@@ -1,9 +1,5 @@
 import React from 'react';
 import './Header.scss';
 export default function Header() {
-  return (
-    <div className="main-header">
-      <p>logo</p>
-    </div>
-  );
+  return <div className="main-header"></div>;
 }
