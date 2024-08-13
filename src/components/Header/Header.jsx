@@ -7,17 +7,19 @@ import { NavLink } from 'react-router-dom';
 export default function Header() {
   return (
     <div className="main-header">
-      <NavLink to="/" className="header-logo">
-        Merge-Halle
-      </NavLink>
+      <div className="main-margin">
+        <NavLink to="/" className="header-logo">
+          Merge-Halle
+        </NavLink>
 
-      <NavLink to="/login" className="header-button">
-        <FontAwesomeIcon
-          icon={faRightToBracket}
-          style={{ marginRight: 10 }}
-        />
-        로그인
-      </NavLink>
+        <NavLink to="/login" className="header-button">
+          <FontAwesomeIcon
+            icon={faRightToBracket}
+            style={{ marginRight: 10 }}
+          />
+          로그인
+        </NavLink>
+      </div>
     </div>
   );
 }
