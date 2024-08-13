@@ -4,5 +4,6 @@
   align-items: center;
   height: 100vh;
   background-color: #ffffff;
-  width: 100vw;
+  width: 90vw;
+  margin: 0 auto; /* This centers the content */
 }
