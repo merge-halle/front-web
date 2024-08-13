@@ -25,15 +25,13 @@ export default function ProductInfoInput() {
       message.error('입력 해주세요!');
       return;
     }
-
+    console.log('서버에 보내는 값', productInfo);
     setIsLoading(true); // 요청을 보내기 전 로딩 상태로 변경
     try {
       const response = await axios.post(
         'https://betatest.p-e.kr/api/question',
         {
-          body: {
-            productDescription: productInfo,
-          },
+          productDescription: productInfo,
         }
       );
 
@@ -52,8 +50,12 @@ export default function ProductInfoInput() {
         setIsPreviewAvailable(
           filteredQuestionList.length > 0
         );
-
-        message.success('AI 요청 완료!'); // 요청 성공 시 메시지 출력
+        if (filteredQuestionList.length > 0)
+          message.success('AI 요청 완료!');
+        // 요청 성공 시 메시지 출력
+        else {
+          message.error('AI 요청 실패!');
+        }
       }
     } catch (error) {
       console.error('서버 요청 에러:', error); // 요청 중 에러 발생 시 콘솔에 에러 출력
