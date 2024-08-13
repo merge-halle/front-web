@@ -88,21 +88,23 @@ export default function ProductInfoInput() {
       <div className="page">
         <div className="page-title">
           <h3>제품 설명</h3>
-          <h3
-            onClick={() =>
-              navigate('/review', {
-                state: {
-                  questionId: isQustionId,
-                },
-              })
-            }
-          >
-            후기 작성
-            <FontAwesomeIcon
-              icon={faPencil}
-              style={{ marginLeft: 10 }}
-            />
-          </h3>
+          {isPreviewAvailable && (
+            <h3
+              onClick={() =>
+                navigate('/review', {
+                  state: {
+                    questionId: isQustionId,
+                  },
+                })
+              }
+            >
+              후기 작성
+              <FontAwesomeIcon
+                icon={faPencil}
+                style={{ marginLeft: 10 }}
+              />
+            </h3>
+          )}
         </div>
         <TextArea
           rows={10}
