@@ -9,10 +9,7 @@ const { TextArea } = Input;
 export default function ProductInfoInput() {
   const [isLoading, setIsLoading] = useState(false); // 로딩 상태를 저장할 state
   const [productInfo, setProductInfo] = useState(''); // TextArea 값을 담을 state
-  const [previewData, setPreviewData] = useState([
-    '디자인',
-    '품질',
-  ]); // 서버에서 받은 데이터를 저장할 state
+  const [previewData, setPreviewData] = useState([]); // 서버에서 받은 데이터를 저장할 state
   const [isPreviewAvailable, setIsPreviewAvailable] =
     useState(false); // 미리보기 버튼 가시성 제어
   const [isModalVisible, setIsModalVisible] =
@@ -25,22 +22,23 @@ export default function ProductInfoInput() {
   const handleSubmit = async () => {
     setIsLoading(true); // 요청을 보내기 전 로딩 상태로 변경
     try {
-      // const response = await axios.post(
-      //   'https://your-server-endpoint.com/api',
-      //   {
-      //     productInfo, // 서버로 보낼 데이터
-      //   }
-      // );
+      const response = await axios.post(
+        'https://betatest.p-e.kr/api/question',
+        {
+          body: {
+            productDescription: productInfo,
+          },
+        }
+      );
 
-      // 서버에서 받은 데이터를 배열로 저장
-      //setPreviewData(response.data);
-      // 서버 응답이 성공적이면 미리보기 버튼 보이도록 설정
-      setTimeout(() => {
-        // 3초 뒤에 실행
+      if (response.status == 200) {
+        // 서버에서 받은 데이터를 배열로 저장
+        setPreviewData(response.data);
+        // 서버 응답이 성공적이면 미리보기 버튼 보이도록 설정
         message.success('AI 요청 완료!'); // 요청 성공 시 메시지 출력
         setIsLoading(false);
         setIsPreviewAvailable(true);
-      }, 3000);
+      }
     } catch (error) {
       console.error('서버 요청 에러:', error); // 요청 중 에러 발생 시 콘솔에 에러 출력
     }
