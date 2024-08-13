@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Input, Button } from "antd";
 import "./TestProductReview.scss";
+import { useMutation} from "@tanstack/react-query";
+
 const { TextArea } = Input;
 
 export default function TestProductReview() {
@@ -9,6 +11,10 @@ export default function TestProductReview() {
 	const handleClick = () => {
 		setUseAI(!useAI);
 	};
+
+  const getReview = async () => {
+
+  }
 
 	return (
 		<div className="page">
@@ -43,6 +49,13 @@ export default function TestProductReview() {
         </div>
 				
 			)}
+      <Button
+						type="primary"
+						onClick={handleClick}
+						className="button"
+					>
+						리뷰 등록하기
+					</Button>
 		</div>
 	);
 }
