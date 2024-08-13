@@ -1,18 +1,12 @@
-.main-page {
+.page{
+  width: 40vw;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 40vh; // header 높이를 제외한 전체 높이 설정
+  flex-direction: column;
 
-  .image-slider {
-    width: 80%;
-    max-width: 600px;
-    overflow: hidden;
-
-    .slider-image {
-      width: 100%;
-      height: auto;
-      transition: opacity 0.5s ease-in-out;
-    }
+  .button{
+    display: flex;
+    align-items: flex-end;
+    margin: 10px 0px;
+    width: 80px;
   }
 }
