@@ -1,6 +1,8 @@
 import './App.css';
 import { Outlet, Route, Routes } from 'react-router-dom';
 import Header from './components/Header/Header';
+import Mainpage from './pages/Main/Mainpage';
+import LoginPage from './pages/Login/Loginpage';
 
 const Layout = () => (
   <>
@@ -16,8 +18,8 @@ function App() {
     <>
       <Routes>
         <Route element={<Layout />}>
-          <Route path="/" />
-          <Route path="/login" />
+          <Route path="/" element={<Mainpage />} />
+          <Route path="/login" element={<LoginPage />} />
         </Route>
       </Routes>
     </>
