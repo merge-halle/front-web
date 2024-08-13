@@ -1,11 +1,23 @@
-.page{
+.page {
 
-    .button{
+    .button {
         width: 200px;
     }
 
-    .blue{
+    .blue {
         background-color: white;
         color: blue;
+    }
+
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: -100px;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        opacity: 0.4;
+        z-index: 1;
     }
 }
