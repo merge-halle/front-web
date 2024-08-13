@@ -86,6 +86,7 @@ export default function ProductInfoInput() {
         }
         visible={isModalVisible}
         onCancel={handleModalClose}
+        closable={false} // X 버튼을 제거하려면 이 속성을 추가
         footer={[
           <Button key="close" onClick={handleModalClose}>
             닫기
