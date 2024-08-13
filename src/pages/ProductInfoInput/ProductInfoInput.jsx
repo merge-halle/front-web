@@ -37,17 +37,29 @@ export default function ProductInfoInput() {
         }
       );
 
-      if (response.status == 200) {
+      if (response.status === 201) {
         console.log('서버 응답:', response.data);
-        // 서버에서 받은 데이터를 배열로 저장
-        setPreviewData(response.data);
-        // 서버 응답이 성공적이면 미리보기 버튼 보이도록 설정
+
+        // response.data에서 questionList를 추출하고 비어 있는 문자열 필터링
+        const questionList =
+          response.data?.questionList || [];
+        const filteredQuestionList = questionList
+          .filter((q) => q.trim() !== '') // 비어 있는 문자열 필터링
+          .slice(1); // 첫 번째 요소 제외
+
+        // 필터링된 questionList를 상태 업데이트
+        setPreviewData(filteredQuestionList);
+        setIsPreviewAvailable(
+          filteredQuestionList.length > 0
+        );
+
         message.success('AI 요청 완료!'); // 요청 성공 시 메시지 출력
-        setIsLoading(false);
-        setIsPreviewAvailable(true);
       }
     } catch (error) {
       console.error('서버 요청 에러:', error); // 요청 중 에러 발생 시 콘솔에 에러 출력
+      message.error('서버 요청 중 오류가 발생했습니다.'); // 요청 실패 메시지 표시
+    } finally {
+      setIsLoading(false); // 로딩 상태 해제
     }
   };
 
@@ -104,6 +116,7 @@ export default function ProductInfoInput() {
               미리보기
             </h2>
           }
+          visible={isModalVisible}
           onCancel={handleModalClose}
           closable={false} // X 버튼을 제거하려면 이 속성을 추가
           footer={[
