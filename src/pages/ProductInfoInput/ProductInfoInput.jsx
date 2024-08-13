@@ -20,6 +20,12 @@ export default function ProductInfoInput() {
   };
 
   const handleSubmit = async () => {
+    if (productInfo.trim() === '') {
+      // productInfo가 빈 문자열인 경우 에러 메시지 표시
+      message.error('입력 해주세요!');
+      return;
+    }
+
     setIsLoading(true); // 요청을 보내기 전 로딩 상태로 변경
     try {
       const response = await axios.post(
@@ -32,6 +38,7 @@ export default function ProductInfoInput() {
       );
 
       if (response.status == 200) {
+        console.log('서버 응답:', response.data);
         // 서버에서 받은 데이터를 배열로 저장
         setPreviewData(response.data);
         // 서버 응답이 성공적이면 미리보기 버튼 보이도록 설정
@@ -97,7 +104,6 @@ export default function ProductInfoInput() {
               미리보기
             </h2>
           }
-          visible={isModalVisible}
           onCancel={handleModalClose}
           closable={false} // X 버튼을 제거하려면 이 속성을 추가
           footer={[
