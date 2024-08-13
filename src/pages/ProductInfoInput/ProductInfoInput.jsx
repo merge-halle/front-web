@@ -41,9 +41,9 @@ export default function ProductInfoInput() {
         // response.data에서 questionList를 추출하고 비어 있는 문자열 필터링
         const questionList =
           response.data?.questionList || [];
-        const filteredQuestionList = questionList
-          .filter((q) => q.trim() !== '') // 비어 있는 문자열 필터링
-          .slice(1); // 첫 번째 요소 제외
+        const filteredQuestionList = questionList.filter(
+          (q) => q.trim() !== ''
+        ); // 비어 있는 문자열 필터링
 
         // 필터링된 questionList를 상태 업데이트
         setPreviewData(filteredQuestionList);
