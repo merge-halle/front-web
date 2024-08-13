@@ -1,6 +1,6 @@
 .main-header {
   width: 100vw;
-  height: 9vh; /* 기본 높이 */
+  height: 10vh; /* 기본 높이 */
   background-color: #f4f4f4;
   display: flex;
   flex-direction: row;
@@ -9,7 +9,7 @@
   top: 0;
   left: 0;
   z-index: 100;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+  border-bottom: 1px solid #e0e0e0;
 }
 
 .header-logo {
@@ -22,7 +22,7 @@
 
 .header-button {
   margin-right: 4rem;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: bold;
   text-align: center;
   align-items: center;
