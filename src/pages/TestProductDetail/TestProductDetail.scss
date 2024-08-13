@@ -1,0 +1,38 @@
+
+
+.container {
+    width: 100%;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr  1fr;
+    grid-template-areas:
+      "header-left header-left header-right"
+      "content content content";
+    height: 100vh;
+
+    .header-left {
+        grid-area: header-left;
+        background-color: #f1f1f1;
+        padding: 20px;
+        margin: 20px;
+        border-radius: 10px;
+      }
+      
+      .header-right {
+        grid-area: header-right;
+        background-color: #c1c1c1;
+        padding: 20px;
+        margin: 20px;
+      }
+      
+      .content {
+        grid-area: content;
+        background-color: #e1e1e1;
+        padding: 20px;
+        margin: 20px;
+      }
+
+
+  }
+  
+ 
