@@ -8,9 +8,10 @@ import Loading from '../../components/Loading/Loading';
 const { TextArea } = Input;
 
 export default function TestProductReview() {
-  const [useAI, setUseAI] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const baseUrl = process.env.REACT_APP_API_BASE_URL;
+	const [useAI, setUseAI] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
+  const [reviewText, setReviewText] = useState(""); // 리뷰 텍스트를 관리하는 상태
+	const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
   const handleClick = () => {
     setUseAI(!useAI);
@@ -28,16 +29,21 @@ export default function TestProductReview() {
     return response;
   };
 
-  // api Mutation
-  const getReviewMutation = useMutation({
-    mutationFn: getReview,
-    onSuccess: (response) => {
-      setIsLoading(false);
-    },
-    onError: (error) => {
-      console.error('sign up failed', error);
-    },
-  });
+	// api Mutation
+	const getReviewMutation = useMutation({
+		mutationFn: getReview,
+		onSuccess: (response) => {
+			// 로딩 끝
+			setIsLoading(false);
+			// textarea 로 이동
+			setUseAI(false);
+			// 응답 메세지 textarea에 넣기
+			// setReviewText(response.reviewText);
+		},
+		onError: (error) => {
+			console.error("sign up failed", error);
+		},
+	});
 
   return (
     <>
@@ -82,7 +88,11 @@ export default function TestProductReview() {
             >
               AI 사용해서 리뷰 작성하기
             </Button>
-            <TextArea rows={10} />
+            <TextArea
+						rows={10}
+						value={reviewText} // TextArea의 value로 reviewText 상태를 사용
+						onChange={(e) => setReviewText(e.target.value)} // 사용자가 직접 입력할 수 있도록 onChange 핸들러 추가
+					/>
             <Button type="primary" className="button">
               리뷰 등록하기
             </Button>
