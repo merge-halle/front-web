@@ -3,10 +3,14 @@ import './ProductInfoInput.scss';
 import { Input, Button, Modal, message } from 'antd';
 import axios from 'axios';
 import Loading from '../../components/Loading/Loading';
-
+import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPencil } from '@fortawesome/free-solid-svg-icons';
 const { TextArea } = Input;
 
 export default function ProductInfoInput() {
+  const navigate = useNavigate();
+  const [isQustionId, setIsQustionId] = useState('');
   const [isLoading, setIsLoading] = useState(false); // 로딩 상태를 저장할 state
   const [productInfo, setProductInfo] = useState(''); // TextArea 값을 담을 state
   const [previewData, setPreviewData] = useState([]); // 서버에서 받은 데이터를 저장할 state
@@ -44,7 +48,7 @@ export default function ProductInfoInput() {
         const filteredQuestionList = questionList.filter(
           (q) => q.trim() !== ''
         ); // 비어 있는 문자열 필터링
-
+        setIsQustionId(response.data.id);
         // 필터링된 questionList를 상태 업데이트
         setPreviewData(filteredQuestionList);
         setIsPreviewAvailable(
@@ -82,7 +86,24 @@ export default function ProductInfoInput() {
         </>
       )}
       <div className="page">
-        <h3>제품 설명</h3>
+        <div className="page-title">
+          <h3>제품 설명</h3>
+          <h3
+            onClick={() =>
+              navigate('/review', {
+                state: {
+                  questionId: isQustionId,
+                },
+              })
+            }
+          >
+            후기 작성
+            <FontAwesomeIcon
+              icon={faPencil}
+              style={{ marginLeft: 10 }}
+            />
+          </h3>
+        </div>
         <TextArea
           rows={10}
           value={productInfo}

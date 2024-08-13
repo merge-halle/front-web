@@ -1,5 +1,5 @@
 .page {
-    margin-top: 100px;
+  margin-top: 100px;
   .button {
     width: 200px;
   }
@@ -8,13 +8,21 @@
     background-color: white;
     color: blue;
   }
+}
 
-  .overlay {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: black;
-    opacity: 0.4;
-    z-index: 1;
-  }
+.overlay {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  opacity: 0.4;
+  z-index: 1;
+}
+
+.pos-center {
+  display: flex;
+  margin-top: 50px;
+  margin-bottom: 100px;
+  justify-content: center;
+  align-items: center;
 }
